@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyBuddy | Virtual Business Assistants</title>
+    <style>
+        :root {
+            --primary: #4361ee;
+            --primary-light: #e0e7ff;
+            --secondary: #3f37c9;
+            --dark: #1e1e24;
+            --light: #f8f9fa;
+            --accent: #f72585;
+            --gray: #6c757d;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #f5f7ff;
+        }
+        
+        /* Sticky Navigation */
+        .navbar {
+            position: sticky;
+            top: 0;
+            background-color: white;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .cta-button {
+            background-color: var(--primary);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .cta-button:hover {
+            background-color: var(--secondary);
+            transform: translateY(-2px);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 5rem 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, #f5f7ff 0%, #e0e7ff 100%);
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        
+        /* Services Section */
+        .section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .section-title p {
+            color: var(--gray);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .service-card {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+        
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        .service-card p {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background-color: var(--primary);
+            color: white;
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+        
+        .cta-section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta-section p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+        
+        .cta-button.white {
+            background-color: white;
+            color: var(--primary);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 4rem 2rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-column a {
+            color: #adb5bd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #adb5bd;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sticky Navigation -->
+    <nav class="navbar">
+        <a href="#" class="logo">MyBuddy</a>
+        <div class="nav-links">
+            <a href="Services.html">Services</a>
+            <a href="#about">About</a>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Your Virtual Business Assistant</h1>
+        <p>Professional CRM services to streamline your operations and boost productivity to grow your business. With Two Words,<br/>Your Business. Our Responsibility. </p>
+        <a href="Services.html" class="cta-button">Get our services now</a>
+    </section>
+    
+    <!-- Services Section -->
+    <section class="section" id="services">
+        <div class="section-title">
+            <h2>Our Services</h2>
+            <p>Comprehensive virtual assistance tailored to your business needs</p>
+        </div>
+        
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">📞</div>
+                <h3>Call Management</h3>
+                <p>Professional call handling, message taking, and call routing services to ensure you never miss important communications.</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">✈️</div>
+                <h3>Travel Coordination</h3>
+                <p>Complete travel management including itinerary planning, hotel bookings, and transportation arrangements.</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">🛒</div>
+                <h3>Supply Management</h3>
+                <p>Office supplies, equipment, and team needs handled efficiently with our procurement services.</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">📊</div>
+                <h3>CRM Management</h3>
+                <p>Expert data entry, record keeping, and CRM maintenance to keep your customer relationships organized.</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">💰</div>
+                <h3>Expense Tracking</h3>
+                <p>Comprehensive financial services including invoice processing, payment tracking, and expense reporting.</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">📊</div>
+                <h3>Social Media Management</h3>
+                <p>In Current Trend Our Experts Helps business to grow digitally bu managing their Social media.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <h2>Ready to Transform Your Business?</h2>
+        <p>Join with our virtual assistance services.</p>
+        <a href="Services.html" class="cta-button white">Start Today</a>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>MyBuddy</h3>
+                <p>Your trusted partner for the business assistance and CRM services virtually since 2025.</p>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Services</h3>
+                <ul>
+                    <li><a href="#">Call Management</a></li>
+                    <li><a href="#">Travel Coordination</a></li>
+                    <li><a href="#">CRM Services</a></li>
+                    <li><a href="#">Expense Tracking/Invoices</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Company</h3>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Our Team</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Contact</h3>
+                <ul>
+                    <li><a href="#">mybuddy.offl@gmail.com</a></li>
+                    <li><a href="#">Support Center</a></li>
+                    <li><a href="#">Live Chat</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            &copy; 2025 MyBuddy. All rights reserved.
+        </div>
+    </footer>
+</body>
+</html>
