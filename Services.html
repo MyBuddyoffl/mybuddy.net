@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyBuddy | Services</title>
+    <style>
+        :root {
+            --primary: #4361ee;
+            --primary-light: #e0e7ff;
+            --secondary: #3f37c9;
+            --dark: #1e1e24;
+            --light: #f8f9fa;
+            --accent: #f72585;
+            --gray: #6c757d;
+            --border: #dee2e6;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        /* Form and Confirmation Message Styles */
+        .service-form {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            padding: 3rem;
+            max-width: 800px;
+            margin: 2rem auto;
+        }
+        
+        .confirmation-message {
+            display: none;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            padding: 3rem;
+            max-width: 800px;
+            margin: 2rem auto;
+            text-align: center;
+        }
+        
+        .confirmation-message h2 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+        
+        .confirmation-message p {
+            color: var(--gray);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .confirmation-icon {
+            font-size: 4rem;
+            color: #4BB543;
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-title {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .form-title h2 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .form-title p {
+            color: var(--gray);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--dark);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .service-option {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .service-option:hover {
+            border-color: var(--primary);
+            background-color: var(--primary-light);
+        }
+        
+        .service-option input {
+            margin-right: 1rem;
+            accent-color: var(--primary);
+        }
+        
+        .service-option label {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+        
+        .service-icon {
+            margin-right: 0.8rem;
+            font-size: 1.2rem;
+        }
+        
+        .submit-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            margin-top: 1rem;
+        }
+        
+        .submit-btn:hover {
+            background-color: var(--secondary);
+            transform: translateY(-2px);
+        }
+        
+        .back-btn {
+            background-color: white;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 1rem;
+        }
+        
+        .back-btn:hover {
+            background-color: var(--primary-light);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0;
+            margin-top: 3rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-column a {
+            color: #adb5bd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #adb5bd;
+            font-size: 0.9rem;
+        }
+
+        .loading-spinner {
+            display: none;
+            width: 40px;
+            height: 40px;
+            margin: 20px auto;
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            border-top: 4px solid var(--primary);
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <a href="#" class="logo">MyBuddy</a>
+        </div>
+    </header>
+    
+    <!-- Service Selection Form -->
+    <div class="container">
+        <form id="serviceRequestForm" class="service-form">
+            <div class="form-title">
+                <h2>Build Your Service Package</h2>
+                <p>Choose from our comprehensive range of virtual assistant services</p>
+            </div>
+            
+            <div class="form-group">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" name="name" class="form-control" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" class="form-control" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="company">Company Name</label>
+                <input type="text" id="company" name="company" class="form-control">
+            </div>
+            
+            <h3 style="margin: 2rem 0 1rem; color: var(--primary);">Select Services Needed</h3>
+            
+            <div class="services-grid">
+                <div class="service-option">
+                    <input type="checkbox" id="call-management" name="services[]" value="Call Management">
+                    <label for="call-management">
+                        <span class="service-icon">📞</span>
+                        Call Management
+                    </label>
+                </div>
+                
+                <div class="service-option">
+                    <input type="checkbox" id="travel-coordination" name="services[]" value="Travel Coordination">
+                    <label for="travel-coordination">
+                        <span class="service-icon">✈️</span>
+                        Travel Coordination
+                    </label>
+                </div>
+                
+                <div class="service-option">
+                    <input type="checkbox" id="crm-services" name="services[]" value="CRM Services">
+                    <label for="crm-services">
+                        <span class="service-icon">📊</span>
+                        CRM Services
+                    </label>
+                </div>
+                
+                <div class="service-option">
+                    <input type="checkbox" id="expense-tracking" name="services[]" value="Expense Tracking">
+                    <label for="expense-tracking">
+                        <span class="service-icon">💰</span>
+                        Expense Tracking
+                    </label>
+                </div>
+                
+                <div class="service-option">
+                    <input type="checkbox" id="social-media" name="services[]" value="Social Media Management">
+                    <label for="social-media">
+                        <span class="service-icon">📱</span>
+                        Social Media Management
+                    </label>
+                </div>
+                
+                <div class="service-option">
+                    <input type="checkbox" id="research" name="services[]" value="Research & Reports">
+                    <label for="research">
+                        <span class="service-icon">🔍</span>
+                        Research & Reports
+                    </label>
+                </div>
+                
+                <div class="service-option">
+                    <input type="checkbox" id="calendar" name="services[]" value="Calendar Management">
+                    <label for="calendar">
+                        <span class="service-icon">📅</span>
+                        Calendar Management
+                    </label>
+                </div>
+                
+                <div class="service-option">
+                    <input type="checkbox" id="data-entry" name="services[]" value="Data Entry">
+                    <label for="data-entry">
+                        <span class="service-icon">⌨️</span>
+                        Data Entry
+                    </label>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="requirements">Additional Requirements</label>
+                <textarea id="requirements" name="requirements" class="form-control" placeholder="Tell us about any specific needs or special requests..."></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="budget">Estimated Budget</label>
+                <select id="budget" name="budget" class="form-control">
+                    <option value="">Select budget range</option>
+                    <option value="500-1000">$500 - $1,000/month</option>
+                    <option value="1000-2000">$1,000 - $2,000/month</option>
+                    <option value="2000-5000">$2,000 - $5,000/month</option>
+                    <option value="5000+">$5,000+/month</option>
+                </select>
+            </div>
+            
+            <div class="loading-spinner" id="loadingSpinner"></div>
+            <button type="submit" class="submit-btn" id="submitButton">Submit</button>
+        </form>
+        
+        <!-- Confirmation Message -->
+        <div id="confirmation" class="confirmation-message">
+            <div class="confirmation-icon">✓</div>
+            <h2>Thank You for Choosing MyBuddy!</h2>
+            <p>Thanks for choosing our service. Our expert will get back to you soon with your custom solution.</p>
+            <p>We typically respond within 24 hours.</p>
+            <button onclick="resetForm()" class="back-btn">Back to Form</button>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>MyBuddy</h3>
+                    <p>Your trusted business assistant service since 2025.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="#">Virtual Assistants</a></li>
+                        <li><a href="#">CRM Management</a></li>
+                        <li><a href="#">Business Support</a></li>
+                        <li><a href="#">Social Media Management</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Our Team</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><a href="#">mybuddy.offl@gmail.com</a></li>
+                        <li><a href="#">Support Center</a></li>
+                        <li><a href="#">Live Chat</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2025 MyBuddy Virtual Assistants. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Google Apps Script Web App URL - Replace with your deployed script URL
+        const scriptURL = 'https://docs.google.com/spreadsheets/d/1dedg3SYdCPYEGYchyq_BdLdX5ntZNdxQa80NzTRTy1A/edit?usp=sharing';
+        
+        document.getElementById('serviceRequestForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Show loading state
+            const submitBtn = document.getElementById('submitButton');
+            const spinner = document.getElementById('loadingSpinner');
+            submitBtn.disabled = true;
+            submitBtn.style.display = 'none';
+            spinner.style.display = 'block';
+            
+            // Get form data
+            const formData = new FormData(this);
+            const formObject = {};
+            formData.forEach((value, key) => {
+                // Handle checkboxes
+                if (key === 'services[]') {
+                    if (!formObject['services']) {
+                        formObject['services'] = [];
+                    }
+                    formObject['services'].push(value);
+                } else {
+                    formObject[key] = value;
+                }
+            });
+            
+            // Convert services array to comma-separated string
+            if (formObject['services']) {
+                formObject['services'] = formObject['services'].join(', ');
+            }
+            
+            // Add timestamp
+            formObject['timestamp'] = new Date().toISOString();
+            
+            // Send data to Google Sheets
+            fetch(scriptURL, {
+                method: 'POST',
+                mode: 'no-cors', // Important for Google Apps Script
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formObject)
+            })
+            .then(() => {
+                // Show confirmation message
+                document.querySelector('.service-form').style.display = 'none';
+                document.getElementById('confirmation').style.display = 'block';
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('There was an error submitting your form. Please try again.');
+            })
+            .finally(() => {
+                submitBtn.disabled = false;
+                submitBtn.style.display = 'block';
+                spinner.style.display = 'none';
+            });
+        });
+        
+        function resetForm() {
+            document.querySelector('.service-form').style.display = 'block';
+            document.getElementById('confirmation').style.display = 'none';
+            document.getElementById('serviceRequestForm').reset();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
